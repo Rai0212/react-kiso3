@@ -1,0 +1,14 @@
+/* divはSignup.cssと同じ */
+
+.login-button {
+  padding: 12px;
+  width: 350px;
+  font-size: 1rem;
+  background-color: #456651;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}

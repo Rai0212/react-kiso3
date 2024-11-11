@@ -8,7 +8,7 @@
 // 2時間くらいかかった．．．，だいぶ試行錯誤した．
 
 import { render, screen } from '@testing-library/react';
-import App from './src/App';
+import App from './App';
 import '@testing-library/jest-dom';
 
 test('renders email, password fields, and login button', () => {

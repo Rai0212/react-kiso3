@@ -1,0 +1,49 @@
+h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  width: 350px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.register {
+  padding: 12px;
+  width: 350px;
+  font-size: 1rem;
+  background-color: #456651;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #5DA797;
+}
+
+div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #454545;
+}
+
+.user-name-input {
+  margin-bottom: 15px;;
+}
+
+.mail-input {
+  margin-bottom: 15px;;
+}
+
+.password-input {
+  margin-bottom: 15px;;
+}
