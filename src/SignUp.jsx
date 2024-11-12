@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
 import Compressor from "compressorjs";
 import { useNavigate } from "react-router-dom";
-import "./Signup.css";
+import "./SignUp.css";
 
 const Signup = () => {
   const [file, setFile] = useState(null); // アップロードする画像
@@ -16,7 +16,7 @@ const Signup = () => {
     const image = event.target.files[0];
     if (image) {
       new Compressor(image, {
-        quality: 0.6,
+        quality: 0.5,
         success(result) {
           setFile(result);
         },
@@ -36,8 +36,6 @@ const Signup = () => {
             email: values.email,
             password: values.password,
           };
-
-          // ファイルが添付されていない場合、エラーメッセージを表示
 
           try {
             // 1. ユーザー登録
@@ -104,17 +102,17 @@ const Signup = () => {
         <Form>
           <div>
             <label>ユーザー名</label>
-            <Field name="name" type="text" className="user-name-input" />
+            <Field name="name" type="text" placeholder="name" className="user-name-input" />
             <ErrorMessage name="name" component="div" />
           </div>
           <div>
             <label>メールアドレス</label>
-            <Field name="email" type="email" className="mail-input" />
+            <Field name="email" type="email" placeholder="mail" className="mail-input" />
             <ErrorMessage name="email" component="div" />
           </div>
           <div>
             <label>パスワード</label>
-            <Field name="password" type="password" className="password-input" />
+            <Field name="password" type="password" placeholder="password" className="password-input" />
             <ErrorMessage name="password" component="div" />
           </div>
           <div>
