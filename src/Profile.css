@@ -1,6 +1,8 @@
-/* divはSignup.cssと同じ，一気に統一している */
+.new-user-name-input {
+  width: 100%;
+}
 
-.login-button {
+.name-update-button {
   padding: 12px;
   width: 350px;
   font-size: 1rem;
@@ -13,6 +15,6 @@
   margin-top: 20px;
 }
 
-.login-button:hover {
+.name-update-button:hover {
   background-color: #5DA797;
 }

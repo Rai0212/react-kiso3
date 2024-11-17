@@ -1,0 +1,39 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #eddfe0;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
+  height: 40px;
+  overflow-x: auto;
+}
+
+/* ヘッダー内のタイトル */
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #705c53;
+  padding-left: 50px;
+}
+
+nav a {
+  color: #705c53;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.dis-name {
+  margin-right: 20px;
+}
+
+.logout-button {
+  margin-right: 20px;
+}

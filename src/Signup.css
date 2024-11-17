@@ -24,7 +24,7 @@ input[type="file"] {
   margin-top: 20px;
 }
 
-button:hover {
+.register:hover {
   background-color: #5DA797;
 }
 
@@ -36,14 +36,9 @@ div {
   color: #454545;
 }
 
-.user-name-input {
-  margin-bottom: 15px;;
-}
-
-.mail-input {
-  margin-bottom: 15px;;
-}
-
+.user-name-input, 
+.mail-input, 
 .password-input {
-  margin-bottom: 15px;;
+  margin-bottom: 15px;
+  width: 330px;
 }

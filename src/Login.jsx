@@ -1,4 +1,6 @@
-// Login.jsxでonLoginを呼び出す
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
@@ -9,6 +11,23 @@ const Login = ({ onLogin }) => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false); // ローディング中の状態
+
+  const fetchUserName = async (token) => {
+    try {
+      const response = await axios.get(
+        "https://railway.bookreview.techtrain.dev/users",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data.name;
+    } catch (error) {
+      console.error("ユーザーエラー", error);
+      return null;
+    }
+  };
 
   return (
     <div>
@@ -28,11 +47,17 @@ const Login = ({ onLogin }) => {
               }
             );
             const token = response.data.token;
+
             if (token) {
-              localStorage.setItem("authToken", token);
+              const name = await fetchUserName(token); // user nameを取得
               console.log("login success!");
-              onLogin(); // ログイン状態を設定
-              navigate("/booklist"); // 書籍一覧ページにリダイレクト
+              if (name) {
+                console.log("name get!", name);
+                onLogin(token, name); // ログイン状態を設定
+                navigate("/booklist"); // 書籍一覧ページにリダイレクト
+              } else {
+                setErrorMessage("ユーザー名の取得に失敗しました");
+              }
             } else {
               console.error("トークンの取得に失敗しました");
             }
@@ -45,7 +70,7 @@ const Login = ({ onLogin }) => {
                 setErrorMessage("すべて入力してください");
               } else if (error.response.data.ErrorCode === 403) {
                 setErrorMessage("パスワードが違います");
-              }else if (error.response.data.ErrorCode === 401) {
+              } else if (error.response.data.ErrorCode === 401) {
                 setErrorMessage("認証エラー");
               } else if (error.response.data.ErrorCode === 500) {
                 setErrorMessage("サーバーでエラーが発生しています");
@@ -63,17 +88,20 @@ const Login = ({ onLogin }) => {
         <Form>
           <div>
             <label>メールアドレス</label>
-            <Field name="email" type="email" />
+            <Field name="email" type="email" className="mail-input" />
             <ErrorMessage name="email" component="div" />
           </div>
+
           <div>
             <label>パスワード</label>
-            <Field name="password" type="password" />
+            <Field name="password" type="password" className="password-input" />
             <ErrorMessage name="password" component="div" />
           </div>
+
           <button type="submit" className="login-button" disabled={isLoading}>
             {isLoading ? "ログイン中..." : "ログイン"}
           </button>
+
           {errorMessage && (
             <div style={{ color: "red", marginTop: "10px" }}>
               {errorMessage}

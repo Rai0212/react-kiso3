@@ -1,0 +1,35 @@
+.new-review__button {
+  padding: 12px;
+  width: 350px;
+  font-size: 1rem;
+  background-color: #456651;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.new-review__button:hover {
+  background-color: #5DA797;
+}
+
+.new-review__title, 
+.new-review__url, 
+.new-review__detail, 
+.new-review__review {
+  margin-bottom: 15px;
+  width: 400px;
+}
+
+.new-review__title, 
+.new-review__url {
+  height: 20px;
+}
+
+.new-review__detail, 
+.new-review__review {
+  height: 150px;
+}
