@@ -6,16 +6,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
+// プロフィールを編集するためのコンポーネント．
 const Profile = ({ userName, setUserName }) => {
-  const [newUserName, setNewUserName] = useState(""); // 更新用ユーザー名
+  const [newUserName, setNewUserName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setNewUserName(userName);
-  }, [userName]); // userNameが更新されるたびに，実行．
+  }, [userName]);
 
+  // 更新．
   const handleUpdate = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("authToken");
@@ -34,8 +36,8 @@ const Profile = ({ userName, setUserName }) => {
       );
 
       if (response.status === 200) {
-        setUserName(newUserName); // AppContentのuserNameを更新する．
-        localStorage.setItem("userName", newUserName); // ローカルストレージを更新
+        setUserName(newUserName); // AppContentのuserNameを更新．
+        localStorage.setItem("userName", newUserName);
         alert("ユーザー情報が更新されました");
         console.log("change the user name sucess!");
         // location.reload();

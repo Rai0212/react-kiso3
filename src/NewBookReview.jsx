@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
-import "./NewBookReview.css"
+import "./NewBookReview.css";
 
+// 本のレビューを新たに作成するためのコンポーネント．
 const NewBookReview = () => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -14,6 +15,7 @@ const NewBookReview = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // 新たなレビューをサーバーに送信するためのコンポーネント．
   const handleSubmit = async (values) => {
     setIsLoading(true);
     const token = localStorage.getItem("authToken");
@@ -31,7 +33,7 @@ const NewBookReview = () => {
       );
 
       if (response.status === 200) {
-        // alert("書籍レビューを投稿しました！");
+        alert("書籍レビューを投稿しました！");
         navigate("/booklist");
       }
     } catch (error) {
@@ -48,31 +50,53 @@ const NewBookReview = () => {
         onSubmit={handleSubmit}
       >
         <Form className="new-review__form">
-        <div>
-        <label>各項目，入力欄の右下にカーソルを合わせ，マウスの左クリックを押しながら操作することで，枠の大きさを調節できます．</label>
-        </div>
-        <br />
+          <div>
+            <label>
+              各項目，入力欄の右下にカーソルを合わせ，マウスの左クリックを押しながら操作することで，枠の大きさを調節できます．
+            </label>
+          </div>
+          <br />
           <div>
             <label>書籍タイトル</label>
-            <Field as="textarea" type="text" name="title" className="new-review__title" />
+            <Field
+              as="textarea"
+              type="text"
+              name="title"
+              className="new-review__title"
+            />
             <ErrorMessage name="title" component="div" />
           </div>
 
           <div>
             <label>書籍リンク(URL):</label>
-            <Field as="textarea" type="url" name="url" className="new-review__url" />
+            <Field
+              as="textarea"
+              type="url"
+              name="url"
+              className="new-review__url"
+            />
             <ErrorMessage name="url" component="div" />
           </div>
 
           <div>
             <label>書籍の詳細:</label>
-            <Field as="textarea" type="text" name="detail" className="new-review__detail" />
+            <Field
+              as="textarea"
+              type="text"
+              name="detail"
+              className="new-review__detail"
+            />
             <ErrorMessage name="detail" component="div" />
           </div>
 
           <div>
             <label>レビュー:</label>
-            <Field as="textarea" type="text" name="review" className="new-review__review" />
+            <Field
+              as="textarea"
+              type="text"
+              name="review"
+              className="new-review__review"
+            />
             <ErrorMessage name="review" component="div" />
           </div>
 

@@ -7,13 +7,14 @@ import Compressor from "compressorjs";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
+// ログインするためのコンポーネント．
 const Signup = () => {
-  const [file, setFile] = useState(null); // アップロードする画像
-  const [errorMessage, setErrorMessage] = useState(""); // エラーメッセージ用ステート
-  const [loading, setLoading] = useState(false); // ローディング状態を管理
+  const [file, setFile] = useState(null); // 画像
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // 画像アップロード処理
+  // 画像を圧縮．compressor.jsを使用．
   const handleImageUpload = (event) => {
     const image = event.target.files[0];
     if (image) {
@@ -32,7 +33,7 @@ const Signup = () => {
       <Formik
         initialValues={{ name: "", email: "", password: "", file: null }}
         onSubmit={async (values) => {
-          setLoading(true); // 登録処理開始時にローディング開始
+          setLoading(true);
           const formData = {
             name: values.name,
             email: values.email,
@@ -40,7 +41,7 @@ const Signup = () => {
           };
 
           try {
-            // 1. ユーザー登録
+            // ユーザーを登録．
             const userResponse = await axios.post(
               "https://railway.bookreview.techtrain.dev/users",
               formData,
@@ -52,14 +53,14 @@ const Signup = () => {
               }
             );
 
-            // ユーザー登録成功時にトークンを取得
+            // ユーザー登録の成功時に，トークンを取得．
             const token = userResponse.data.token;
 
-            // 2. 画像アップロード
+            // 画像のアップロード．
             const imageFormData = new FormData();
             imageFormData.append("icon", file);
 
-            // ヘッダーにトークンを設定して画像をアップロード
+            // 得られたトークンに対して，画像をアップロード．
             const uploadResponse = await axios.post(
               "https://railway.bookreview.techtrain.dev/uploads",
               imageFormData,
@@ -73,11 +74,8 @@ const Signup = () => {
             );
 
             console.log("image upload success!:", uploadResponse.data);
-
-            // ログインページにリダイレクト
             navigate("/login");
           } catch (error) {
-            // エラーハンドリング
             if (error.response) {
               if (error.response.data.ErrorCode === 400) {
                 setErrorMessage("すべて入力してください");
@@ -92,29 +90,44 @@ const Signup = () => {
               } else if (!file) {
                 setLoading(false);
                 setErrorMessage("ファイルを添付してください");
-                return; // 処理を中断
+                return;
               }
             }
             console.error("登録エラー:", error.response?.data || error.message);
           } finally {
-            setLoading(false); // 登録処理終了時にローディング終了
+            setLoading(false);
           }
         }}
       >
         <Form>
           <div>
             <label>ユーザー名</label>
-            <Field name="name" type="text" placeholder="name" className="user-name-input" />
+            <Field
+              name="name"
+              type="text"
+              placeholder="name"
+              className="user-name-input"
+            />
             <ErrorMessage name="name" component="div" />
           </div>
           <div>
             <label>メールアドレス</label>
-            <Field name="email" type="email" placeholder="mail" className="mail-input" />
+            <Field
+              name="email"
+              type="email"
+              placeholder="mail"
+              className="mail-input"
+            />
             <ErrorMessage name="email" component="div" />
           </div>
           <div>
             <label>パスワード</label>
-            <Field name="password" type="password" placeholder="password" className="password-input" />
+            <Field
+              name="password"
+              type="password"
+              placeholder="password"
+              className="password-input"
+            />
             <ErrorMessage name="password" component="div" />
           </div>
           <div>
@@ -129,7 +142,6 @@ const Signup = () => {
             {loading ? "登録中..." : "登録"}
           </button>
 
-          {/* エラーメッセージ表示 */}
           {errorMessage && (
             <div style={{ color: "red", marginTop: "10px" }}>
               {errorMessage}

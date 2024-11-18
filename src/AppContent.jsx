@@ -10,12 +10,14 @@ import BookList from "./BookList";
 import Profile from "./Profile";
 import NewBookReview from "./NewBookReview";
 import BookDetail from "./BookDetail";
+import EditReview from "./EditReview";
 
 const AppContent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
+  // ローカルに保存されているトークンと名前を取得．
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     const storedUserName = localStorage.getItem("userName");
@@ -26,6 +28,7 @@ const AppContent = () => {
     }
   }, [userName]);
 
+  // ログイン処理．
   const handleLogin = (token, name) => {
     localStorage.setItem("authToken", token);
     localStorage.setItem("userName", name);
@@ -34,8 +37,9 @@ const AppContent = () => {
     navigate("/booklist");
   };
 
+  // ログアウト処理．
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // 認証トークンの削除．
+    localStorage.removeItem("authToken");
     localStorage.removeItem("userName");
     setIsLoggedIn(false);
     setUserName("");
@@ -43,6 +47,7 @@ const AppContent = () => {
   };
 
   // 参考資料：https://jp-seemore.com/web/28301/#toc9
+  // ログイン状態の時に，ログイン or サインアップを選択したときに，ブックリストにリダイレクト．
   useEffect(() => {
     if (isLoggedIn) {
       if (
@@ -72,6 +77,7 @@ const AppContent = () => {
           element={<Profile userName={userName} setUserName={setUserName} />}
         />
         <Route path="/new" element={<NewBookReview />} />
+        <Route path="/edit/:id" element={<EditReview />} />
       </Routes>
     </>
   );

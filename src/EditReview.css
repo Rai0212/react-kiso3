@@ -1,0 +1,64 @@
+/* クラス設計を導入 */
+/* BEM, block__element--modifier */
+
+.edit-review__form {
+  display: flex;
+  flex-direction: column; /* ボタンを縦に並べる */
+  align-items: center; /* 水平方向に中央揃え */
+}
+
+.edit-review__title,
+.edit-review__url,
+.edit-review__detail,
+.edit-review__review {
+  margin-bottom: 15px;
+  width: 400px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.edit-review__title,
+.edit-review__url {
+  height: 20px;
+}
+
+.edit-review__detail,
+.edit-review__review {
+  height: 150px;
+}
+
+.edit-review__button {
+  padding: 12px;
+  width: 350px;
+  font-size: 1rem;
+  background-color: #456651;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-review__button:hover {
+  background-color: #5da797;
+}
+
+.edit-review__button-delete {
+  padding: 12px;
+  width: 350px;
+  font-size: 1rem;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-review__button-delete:hover {
+  background-color: rgb(168, 3, 53);
+}

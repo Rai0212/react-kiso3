@@ -7,11 +7,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
+// ログインするためのコンポーネント．
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // ローディング中の状態
+  const [isLoading, setIsLoading] = useState(false);
 
+  // ユーザー名を取得するためのコンポーネント．
   const fetchUserName = async (token) => {
     try {
       const response = await axios.get(
@@ -34,8 +36,9 @@ const Login = ({ onLogin }) => {
       <h2>ログイン</h2>
       <Formik
         initialValues={{ email: "", password: "" }}
+        // ログイン処理をするコンポーネント．
         onSubmit={async (values) => {
-          setIsLoading(true); // ローディング開始
+          setIsLoading(true);
           try {
             const response = await axios.post(
               "https://railway.bookreview.techtrain.dev/signin",
@@ -49,12 +52,12 @@ const Login = ({ onLogin }) => {
             const token = response.data.token;
 
             if (token) {
-              const name = await fetchUserName(token); // user nameを取得
+              const name = await fetchUserName(token); // user nameを取得．
               console.log("login success!");
               if (name) {
                 console.log("name get!", name);
-                onLogin(token, name); // ログイン状態を設定
-                navigate("/booklist"); // 書籍一覧ページにリダイレクト
+                onLogin(token, name); // ログイン状態を設定．
+                navigate("/booklist");
               } else {
                 setErrorMessage("ユーザー名の取得に失敗しました");
               }
@@ -81,7 +84,7 @@ const Login = ({ onLogin }) => {
               console.error("エラー:", error.message);
             }
           } finally {
-            setIsLoading(false); // ローディング終了
+            setIsLoading(false);
           }
         }}
       >

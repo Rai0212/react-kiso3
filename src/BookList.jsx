@@ -15,6 +15,7 @@ import {
 import ReviewList from "./ReviewList";
 import Pagination from "./Pagination";
 
+// 本のレビューを表示するコンポーネント．
 const BookList = () => {
   const dispatch = useDispatch();
   const { reviews, errorMessage, offset, isLoading } = useSelector(
@@ -34,7 +35,7 @@ const BookList = () => {
       } catch (error) {
         dispatch(setErrorMessage("データ取得エラーが発生しました"));
       } finally {
-        dispatch(setLoading(false)); // ローディング終了
+        dispatch(setLoading(false)); // ローディング終了．
       }
     };
 
@@ -44,9 +45,13 @@ const BookList = () => {
   return (
     <div className="review-list">
       <h2 className="review-list__title">書籍レビュー一覧</h2>
-      <Link to="/new" className="new-review__post">新規レビュー投稿</Link>
-      <p>タイトルにカーソルを合わせ，左クリックすると，各本の詳細ページへ移動します．</p>
-      {isLoading && <p>読み込み中...</p>}
+      <Link to="/new" className="new-review__post">
+        新規レビュー投稿
+      </Link>
+      <p>
+        タイトルにカーソルを合わせ，左クリックすると，各本の詳細ページへ移動します．
+      </p>
+      <p>編集ボタンを左クリックすると，レビュー内容を編集できます．</p>
       <ReviewList reviews={reviews} />
       {errorMessage && <div className="review-list__error">{errorMessage}</div>}
       {!isLoading && <Pagination />}

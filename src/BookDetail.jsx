@@ -11,6 +11,7 @@ const BookDetail = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    // それぞれの本の，レビューなどの詳細を得るコンポーネント．
     const fetchBookDetail = async () => {
       setIsLoading(true);
       const token = localStorage.getItem("authToken");
@@ -25,8 +26,9 @@ const BookDetail = () => {
           }
         );
         setBookDetail(response.data);
+        // console.log(response.data.isMine);
 
-        // 書籍IDをログとして送信．
+        // 書籍のIDをログとして送信．
         await axios.post(
           "https://railway.bookreview.techtrain.dev/logs",
           { selectBookId: id },
@@ -57,13 +59,13 @@ const BookDetail = () => {
             <strong>タイトル:</strong> {bookDetail.title}
           </p>
           <p>
+            <strong>商品URL:</strong> {bookDetail.url}
+          </p>
+          <p>
             <strong>詳細:</strong> {bookDetail.detail}
           </p>
           <p>
             <strong>レビュー:</strong> {bookDetail.review}
-          </p>
-          <p>
-            <strong>商品URL:</strong> {bookDetail.url}
           </p>
           <p>
             <strong>投稿者:</strong> {bookDetail.reviewer}

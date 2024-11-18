@@ -30,5 +30,6 @@ const bookSlice = createSlice({
   },
 });
 
-export const { setReviews, setErrorMessage, setLoading, setOffset } = bookSlice.actions;
+export const { setReviews, setErrorMessage, setLoading, setOffset } =
+  bookSlice.actions;
 export default bookSlice.reducer;

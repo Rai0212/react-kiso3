@@ -5,6 +5,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
+// ヘッダーを表示するためのコンポーネント．
+// ログインしているか否かで，表示する内容を切り替えている．
 const Header = ({ isLoggedIn, userName, handleLogout }) => {
   return (
     <header>

@@ -31,3 +31,15 @@
   color: blue;
   text-decoration: underline; /* ホバー時に下線を表示 */
 }
+
+.review-list__edit-button {
+  font-size: 14px;
+  color: #705c53;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.review-list__edit-button:hover {
+  color: blue;
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}

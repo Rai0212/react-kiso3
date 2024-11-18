@@ -3,6 +3,7 @@
 import React from "react";
 import "./Home.css";
 
+// ホーム画面を表示するためのコンポーネント．
 const Home = () => {
   return (
     <main>
@@ -18,7 +19,7 @@ const Home = () => {
         <img
           src="./src/assets/eye_ganseihirou_book_woman.png"
           alt="book illustration"
-          height={150}
+          height="auto"
         />
       </h3>
     </main>

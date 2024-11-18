@@ -1,3 +1,6 @@
+/* クラス設計を導入 */
+/* BEM, block__element--modifier */
+
 .new-review__button {
   padding: 12px;
   width: 350px;
@@ -13,23 +16,25 @@
 }
 
 .new-review__button:hover {
-  background-color: #5DA797;
+  background-color: #5da797;
 }
 
-.new-review__title, 
-.new-review__url, 
-.new-review__detail, 
+.new-review__title,
+.new-review__url,
+.new-review__detail,
 .new-review__review {
   margin-bottom: 15px;
   width: 400px;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
-.new-review__title, 
+.new-review__title,
 .new-review__url {
   height: 20px;
 }
 
-.new-review__detail, 
+.new-review__detail,
 .new-review__review {
   height: 150px;
 }
