@@ -20,6 +20,7 @@ const Home = () => {
           src="./src/assets/eye_ganseihirou_book_woman.png"
           alt="book illustration"
           height="auto"
+          width={200}
         />
       </h3>
     </main>
